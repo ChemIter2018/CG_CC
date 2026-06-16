@@ -1,0 +1,16 @@
+# Same soft-sensor task, plus lag/rolling features of the process variables.
+data_path: data/00FurnaceCleanData.csv
+target: PE
+feature_slice: [1, 20]
+ratios: [0.7, 0.15, 0.15]
+embargo: 50
+models: [xgboost, lightgbm, catboost, ft_transformer]
+n_trials: 30
+cv_splits: 4
+seed: 42
+output_dir: experiments_features
+features:
+  lags: [1, 2, 3, 5, 10]
+  windows: [5, 15, 30]
+model_kwargs:
+  ft_transformer: {max_epochs: 150, patience: 20, batch_size: 1024}

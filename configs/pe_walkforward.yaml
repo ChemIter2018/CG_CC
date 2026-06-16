@@ -1,0 +1,22 @@
+# Furnace PE soft-sensor — ONLINE scenario (rolling-origin / walk-forward).
+#
+# Honest evaluation for a deployed sensor that is periodically recalibrated:
+# refit on all history up to now, predict the next `interval` rows, slide forward.
+# Strictly time-ordered with an embargo gap, so no future / near-duplicate leakage.
+# This reflects the real deployment far better than the single 70/15/15 split and
+# recovers a much higher (honest) R².
+data_path: data/00FurnaceCleanData.csv
+target: PE
+feature_slice: [1, 20]        # CSV columns 1..19 (process variables); excludes products & PE
+embargo: 50                   # rows between each fold's train end and its test block
+models: [xgboost, lightgbm, catboost]
+n_trials: 30                  # Optuna trials — tuned ONCE on the initial window
+cv_splits: 4                  # TimeSeriesSplit folds for that one tuning pass
+seed: 42
+output_dir: experiments_walkforward
+eval: walk_forward
+walk_forward:
+  init_frac: 0.5              # initial training fraction (first origin)
+  interval: 250               # recalibration interval: rows predicted between refits
+  window: expanding           # "expanding" (accumulate history) or "sliding" (fixed window)
+# Sweep `interval` (250 / 500 / 1000 / 2000) to trace the R²-vs-recalibration-frequency curve.

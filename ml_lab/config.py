@@ -25,6 +25,9 @@ class ExperimentConfig:
     output_dir: str = "experiments"
     model_kwargs: dict = field(default_factory=dict)  # per-model fixed kwargs
     model_python: dict = field(default_factory=dict)  # per-model python interpreter
+    features: dict = field(default_factory=dict)  # lag/rolling feature engineering
+    eval: str = "single"  # "single" (chronological split) or "walk_forward"
+    walk_forward: dict = field(default_factory=dict)  # init_frac, interval, window
 
     @classmethod
     def from_yaml(cls, path) -> "ExperimentConfig":

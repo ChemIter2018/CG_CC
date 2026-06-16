@@ -12,7 +12,7 @@ from pathlib import Path
 
 from .config import ExperimentConfig
 from .data import load_dataframe, select_xy
-from .experiment import run_experiment
+from .experiment import run_experiment, run_walk_forward
 
 
 def main(argv=None):
@@ -34,8 +34,15 @@ def main(argv=None):
         df = df.iloc[: cfg.subsample].reset_index(drop=True)
     X, y = select_xy(df, cfg.feature_slice, cfg.target)
 
+    if cfg.features:
+        from .features import add_time_features
+        X, y = add_time_features(X, y, **cfg.features)
+
     outdir = Path(cfg.output_dir) / "runs" / args.model
-    rec = run_experiment(args.model, X, y, cfg, outdir, leaderboard=None)
+    if getattr(cfg, "eval", "single") == "walk_forward":
+        rec = run_walk_forward(args.model, X, y, cfg, outdir, leaderboard=None)
+    else:
+        rec = run_experiment(args.model, X, y, cfg, outdir, leaderboard=None)
     print(f"RESULT {args.model}: r2={rec['r2']:.6f} rmse={rec['rmse']:.6f} "
           f"mae={rec['mae']:.6f} ({rec['train_time_s']}s)")
 
