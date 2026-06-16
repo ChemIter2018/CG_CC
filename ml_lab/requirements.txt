@@ -1,0 +1,20 @@
+# ml_lab environment (Python >= 3.10)
+# macOS note: xgboost/lightgbm need the OpenMP runtime -> `brew install libomp`
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+pyyaml
+optuna
+xgboost
+lightgbm
+catboost
+torch
+rtdl_revisiting_models
+pytest
+
+# AutoGluon runs in a SEPARATE environment (it pins different numpy/pandas),
+# invoked via `--model-python autogluon=/path/to/that/python`:
+#   conda create -n ml_lab_ag python=3.11
+#   conda run -n ml_lab_ag pip install "autogluon.tabular[all]" pyyaml

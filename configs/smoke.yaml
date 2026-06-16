@@ -1,0 +1,14 @@
+# Fast smoke configuration: small trials, short budgets, separate output dir.
+data_path: data/00FurnaceCleanData.csv
+target: PE
+feature_slice: [1, 20]
+ratios: [0.7, 0.15, 0.15]
+embargo: 50
+models: [xgboost, lightgbm, catboost, ft_transformer, autogluon]
+n_trials: 2
+cv_splits: 3
+seed: 42
+output_dir: experiments_smoke
+model_kwargs:
+  ft_transformer: {max_epochs: 30, patience: 6, batch_size: 512}
+  autogluon: {time_limit: 60, presets: medium_quality}

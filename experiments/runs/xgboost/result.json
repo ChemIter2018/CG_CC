@@ -1,0 +1,19 @@
+{
+  "model": "xgboost",
+  "params": {
+    "n_estimators": 1100,
+    "max_depth": 9,
+    "learning_rate": 0.11107075811376299,
+    "subsample": 0.8099382470352202,
+    "colsample_bytree": 0.6493683700479093,
+    "reg_lambda": 3.53736200531427,
+    "min_child_weight": 9
+  },
+  "metrics": {
+    "r2": 0.04684591187900122,
+    "rmse": 0.012521428480032319,
+    "mae": 0.01025716878859605
+  },
+  "train_time_s": 72.32418775558472,
+  "n_test": 4909
+}

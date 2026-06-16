@@ -1,0 +1,19 @@
+{
+  "model": "lightgbm",
+  "params": {
+    "n_estimators": 1400,
+    "num_leaves": 74,
+    "learning_rate": 0.05409303452609342,
+    "subsample": 0.7430017306843612,
+    "colsample_bytree": 0.8900646198797656,
+    "reg_lambda": 0.004520803335872556,
+    "min_child_samples": 93
+  },
+  "metrics": {
+    "r2": -0.027086988629928532,
+    "rmse": 0.012997982069874313,
+    "mae": 0.010772285868259606
+  },
+  "train_time_s": 246.5706968307495,
+  "n_test": 4909
+}

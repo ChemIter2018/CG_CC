@@ -20,3 +20,8 @@ env/
 
 # Downloaded datasets / TF data
 tensorflow_datasets/
+
+# ml_lab experiment artifacts (keep experiments/leaderboard.csv + small run outputs)
+experiments_smoke/
+catboost_info/
+AutogluonModels/
