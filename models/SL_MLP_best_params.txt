@@ -1,0 +1,1 @@
+{"activation": "tanh", "learning_rate": "constant", "max_iter": 300, "solver": "adam"}

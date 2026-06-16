@@ -1,0 +1,17 @@
+# 核心依赖（src/ 建模脚本）
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+tensorflow
+joblib
+
+# sandbox/ 额外依赖（可选）
+# paho-mqtt            # HUAWEI_YUN_MQTT_PUB.py
+# tensorflow-datasets  # GPU_Print.py / tensorflowtest.py
+
+# 注意：脚本编写于 2021 年，使用了部分已弃用 API
+#  - keras.optimizers.Adam(lr=...)        -> 新版用 learning_rate=
+#  - DecisionTreeRegressor(criterion=mse) -> 新版用 squared_error
+# 如需复现，建议固定较旧版本的 scikit-learn (<1.0) 与 tensorflow (2.x, 2021 年版)。

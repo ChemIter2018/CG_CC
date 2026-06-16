@@ -1,0 +1,1 @@
+{"C": 1000, "degree": 3, "epsilon": 0.1, "gamma": "scale", "kernel": "rbf"}
